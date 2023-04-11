@@ -75,9 +75,7 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             # Reset the game statistics.
             self.stats.reset_stats()
-            self.sb.prep_score()
-            self.sb.prep_level()
-            self.sb.prep_ships()
+            self.sb.prep_images() 
             self.game_active = True
             
             # Get rid of any remaining aliens and bullets.
@@ -135,6 +133,9 @@ class AlienInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+        
+        # Play the bullet sound effect.
+        self.settings.shoot_sound.play()
             
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
@@ -234,8 +235,12 @@ class AlienInvasion:
             self.settings.increase_speed()
             
             # Increase level.
-            self.stats.level += 1
-            self.sb.prep_level()
+            self._start_new_level()
+            
+    def _start_new_level(self):
+        """ Increase level"""
+        self.stats.level += 1
+        self.sb.prep_level()
         
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""

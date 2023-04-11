@@ -1,3 +1,4 @@
+import pygame.mixer
 class Settings:
     """A class to store all settings for Alien Invasion."""
     
@@ -24,7 +25,10 @@ class Settings:
         # How quickly the alien point values increase
         self.score_scale = 1.5
         
-        self.initialize_dynamic_settings()        
+        self.initialize_dynamic_settings()
+        
+        # Sound settings
+        self.shoot_sound = pygame.mixer.Sound('shoot_sound.mp3')
         
     def initialize_dynamic_settings(self):
         """Initialize settings that change throughout the game."""

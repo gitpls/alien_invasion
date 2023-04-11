@@ -17,7 +17,7 @@ class Bullet(Sprite):
         self.rect.midtop = ai_game.ship.rect.midtop
 
         # Store the bullet's position as a float
-        self.y = float(self.rect.y)
+        self.y = float(self.rect.y)        
 
     def update(self):
         """Move the bullet up the screen."""
